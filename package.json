@@ -1,0 +1,32 @@
+{
+  "name": "ecommerce-product-page-main",
+  "version": "1.0.0",
+  "description": "![Design preview for the E-commerce product page coding challenge](./design/desktop-preview.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run development",
+    "development": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "prod": "npm run production",
+    "production": "mix --production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "browser-sync": "^2.27.7",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "laravel-mix": "^6.0.37",
+    "postcss": "^8.3.11",
+    "resolve-url-loader": "^4.0.0",
+    "sass": "^1.43.4",
+    "sass-loader": "^12.3.0",
+    "tailwindcss": "^2.2.19"
+  },
+  "dependencies": {
+    "@tailwindcss/aspect-ratio": "^0.3.0"
+  }
+}
