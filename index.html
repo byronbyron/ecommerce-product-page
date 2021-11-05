@@ -21,8 +21,8 @@
   <link rel="stylesheet" href="/css/app.css">
 
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
 </head>
+
 <body>
     <header>      
         <div x-data="{ open: false }">
@@ -66,8 +66,9 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="lg:hidden">
-                    <div class="w-3/4 h-full px-4 pt-4 pb-3 space-y-1 bg-white fixed top-0 left-0 transform z-50 transition-all" :class="open ? 'translate-x-0' : '-translate-x-full'">
+                    <div class="w-3/4 h-full px-4 pt-4 pb-3 space-y-1 bg-white fixed top-0 left-0 transform z-50 transition-transform duration-300" :class="open ? 'translate-x-0' : '-translate-x-full'">
                         <button class="text-gray-500 dark:text-gray-100 hover:text-gray-800 inline-flex items-center justify-center p-2 rounded-md focus:outline-none" @click="open = false">
                             <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg"><path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="currentColor" fill-rule="evenodd"/></svg>
                         </button>
@@ -88,65 +89,69 @@
                             Contact
                         </a>
                     </div>
+
+                    <div class="bg-black absolute inset-0 z-20 opacity-75 transition duration-300" :class="open ? 'block' : 'hidden'" @click="open = false"></div>
                 </div>
             </nav>
         </div>
     </header>
 
-  <main>
+    <main>
     
-    <ul class="product__gallery">
-      <li class="aspect-w-5 aspect-h-4">
-        <img src="/images/image-product-1.jpg" alt="" class="object-cover">
-      </li>
-    </ul>
+        <ul class="product__gallery">
+            <li class="aspect-w-5 aspect-h-4">
+                <img src="/images/image-product-1.jpg" alt="" class="object-cover">
+            </li>
+        </ul>
 
-    <div class="max-w-7xl mx-auto px-6 py-6">
-      <p class="font-bold uppercase tracking-widest text-xs text-yellow-500 mb-3">Sneaker Company</p>
+        <div class="max-w-7xl mx-auto px-6 py-6">
+            <p class="font-bold uppercase tracking-widest text-xs text-yellow-500 mb-3">Sneaker Company</p>
 
-      <h1 class="font-bold text-3xl mb-3">Fall Limited Edition Sneakers</h1>
+            <h1 class="font-bold text-3xl mb-3">Fall Limited Edition Sneakers</h1>
 
-      <p class="text-gray-500 mb-5">These low-profile sneakers are your perfect casual wear companion. Featuring a 
-      durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
+            <p class="text-gray-500 mb-5">These low-profile sneakers are your perfect casual wear companion. Featuring a 
+            durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
 
-      <div class="mb-5">
-        <p class="flex items-center mb-2">
-          <span class="font-bold text-3xl mr-4">$125.00</span>
-          <span class="inline-block font-bold rounded-md bg-paleOrange text-orange px-2 py-0.5">50%</span>
-        </p>
+            <div class="mb-5 flex items-center">
+                <p class="flex items-center mb-2 mr-auto">
+                    <span class="font-bold text-3xl mr-4">$125.00</span>
+                    <span class="inline-block font-bold rounded-md bg-paleOrange text-orange px-2 py-0.5 mr-3">50%</span>
+                </p>
 
-        <p><span class="font-bold text-gray-400 line-through">$250.00</span></p>
-      </div>
+                <p class="mb-2">
+                    <span class="font-bold text-gray-300 line-through">$250.00</span>
+                </p>
+            </div>
 
-      <form action="">
-        <div class="relative mb-4" x-data="{ quantity: 1 }">
-            <label for="quantity" class="sr-only">Quantity</label>
-            <input type="number" min="1" value="1" :value="quantity" id="quantity" class="block rounded-lg text-center appearance-none w-full py-3 px-4 bg-gray-100 font-bold text-black shadow-sm">
+            <form action="">
+                <div class="relative mb-4" x-data="{ quantity: 1 }">
+                    <label for="quantity" class="sr-only">Quantity</label>
+                    <input type="number" min="1" value="1" :value="quantity" id="quantity" class="block rounded-lg text-center appearance-none w-full py-3 px-4 bg-gray-100 font-bold text-black shadow-sm">
 
-            <button class="flex items-center justify-center absolute top-1/2 -mt-5 left-0.5 w-10 h-10 bg-gray-100" @click.prevent="quantity--" :disabled="quantity <= 1">
-                <svg width="12" height="4" class="text-orange hover:text-yellow-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M11.357 3.332A.641.641 0 0 0 12 2.69V.643A.641.641 0 0 0 11.357 0H.643A.641.641 0 0 0 0 .643v2.046c0 .357.287.643.643.643h10.714Z" id="a"/></defs><use fill-rule="nonzero" xlink:href="#a"/></svg>
-            </button>
+                    <button class="flex items-center justify-center absolute top-1/2 -mt-5 left-0.5 w-10 h-10 bg-gray-100" @click.prevent="quantity--" :disabled="quantity <= 1">
+                        <svg width="12" height="4" class="text-orange hover:text-yellow-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M11.357 3.332A.641.641 0 0 0 12 2.69V.643A.641.641 0 0 0 11.357 0H.643A.641.641 0 0 0 0 .643v2.046c0 .357.287.643.643.643h10.714Z" id="a"/></defs><use fill-rule="nonzero" xlink:href="#a"/></svg>
+                    </button>
 
-            <button class="flex items-center justify-center absolute top-1/2 -mt-5 right-0.5 w-10 h-10 bg-gray-100" @click.prevent="quantity++">
-                <svg width="12" height="12" class="text-orange hover:text-yellow-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M12 7.023V4.977a.641.641 0 0 0-.643-.643h-3.69V.643A.641.641 0 0 0 7.022 0H4.977a.641.641 0 0 0-.643.643v3.69H.643A.641.641 0 0 0 0 4.978v2.046c0 .356.287.643.643.643h3.69v3.691c0 .356.288.643.644.643h2.046a.641.641 0 0 0 .643-.643v-3.69h3.691A.641.641 0 0 0 12 7.022Z" id="b"/></defs><use fill-rule="nonzero" xlink:href="#b"/></svg>
-            </button>
+                    <button class="flex items-center justify-center absolute top-1/2 -mt-5 right-0.5 w-10 h-10 bg-gray-100" @click.prevent="quantity++">
+                        <svg width="12" height="12" class="text-orange hover:text-yellow-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M12 7.023V4.977a.641.641 0 0 0-.643-.643h-3.69V.643A.641.641 0 0 0 7.022 0H4.977a.641.641 0 0 0-.643.643v3.69H.643A.641.641 0 0 0 0 4.978v2.046c0 .356.287.643.643.643h3.69v3.691c0 .356.288.643.644.643h2.046a.641.641 0 0 0 .643-.643v-3.69h3.691A.641.641 0 0 0 12 7.022Z" id="b"/></defs><use fill-rule="nonzero" xlink:href="#b"/></svg>
+                    </button>
+                </div>
+
+                <button type="button" class="flex justify-center py-3 px-4 bg-orange hover:bg-yellow-600 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md rounded-lg">
+                    <svg width="22" height="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"/>
+                    </svg>
+                    <span class="ml-3">Add to cart</span>
+                </button>
+            </form>
         </div>
+    </main>
 
-        <button type="button" class="flex justify-center py-3 px-4 bg-orange hover:bg-yellow-600 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md rounded-lg">
-            <svg width="22" height="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"/>
-            </svg>
-            <span class="ml-3">Add to cart</span>
-        </button>
-      </form>
-    </div>
-  </main>
-
-  <footer>
-    <div class="attribution ">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-      Coded by <a href="#">Byron Walker-Mills</a>.
-    </div>
-  </footer>
+    <footer>
+        <div class="attribution ">
+            Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+            Coded by <a href="#">Byron Walker-Mills</a>.
+        </div>
+    </footer>
 </body>
 </html>
