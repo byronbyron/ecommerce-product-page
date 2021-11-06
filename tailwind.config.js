@@ -15,8 +15,9 @@ module.exports = {
         orange: 'hsl(26, 100%, 55%)',
         paleOrange: 'hsl(25, 100%, 94%)',
       },
-      spacing: {
-      },
+      fontSize: {
+        xxs: '0.625rem',
+      }
     },
   },
   variants: {

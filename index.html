@@ -61,7 +61,16 @@
                             </div>
                         </div>
                         <div class="block">
-                            <div class="ml-4 flex items-center lg:ml-6">
+                            <div class="ml-4 -mr-1 flex items-center lg:ml-6">
+                                <button class='w-12 h-12 flex items-center justify-center relative'>
+                                    <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="#69707D" fill-rule="nonzero"/></svg>
+
+                                    <span class="leading-none font-bold text-xxs text-white bg-orange inline-block rounded-full px-2 py-0.5 absolute top-2 right-1">1</span>
+                                </button>
+
+                                <a href="#" class="w-12 h-12 flex items-center justify-center">
+                                    <img src="/images/image-avatar.png" alt="" class="w-6 h-6">
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -97,12 +106,50 @@
     </header>
 
     <main>
-    
-        <ul class="product__gallery">
-            <li class="aspect-w-5 aspect-h-4">
-                <img src="/images/image-product-1.jpg" alt="" class="object-cover">
-            </li>
-        </ul>
+        
+        <div class="flex flex-col justify-center items-center">
+
+            <div class="relative" x-data="{ activeSlide: 1, slides: [1, 2, 3, 4] }">
+            
+                <!-- Slides -->
+                <template x-for="slide in slides" :key="slide">
+                    <div x-show="activeSlide === slide" class="flex items-center">
+                        <img src="/images/image-product-1.jpg" :src="`/images/image-product-${slide}.jpg`" alt="">
+                    </div>
+                </template>
+
+                <!-- Prev/Next Arrows -->
+                <div class="absolute inset-4 flex">
+                    <div class="flex items-center justify-start">
+                        <button class="flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-10 h-10" x-on:click="activeSlide = activeSlide === 1 ? slides.length : activeSlide - 1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center justify-end w-full">
+                        <button class="flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-10 h-10" x-on:click="activeSlide = activeSlide === slides.length ? 1 : activeSlide + 1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="absolute w-full flex items-center justify-center px-4">
+                    <template x-for="slide in slides" :key="slide">
+                        <button class="flex-1 mt-4 mx-2 mb-0 overflow-hidden"
+                        :class="{ 
+                            'bg-orange': activeSlide === slide,
+                            'bg-teal': activeSlide !== slide 
+                        }" 
+                        x-on:click="activeSlide = slide"></button>
+                    </template>
+                </div>
+            </div>
+        </div>
 
         <div class="max-w-7xl mx-auto px-6 py-6">
             <p class="font-bold uppercase tracking-widest text-xs text-yellow-500 mb-3">Sneaker Company</p>
