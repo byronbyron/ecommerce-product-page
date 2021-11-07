@@ -112,34 +112,36 @@
 
             <div class="lg:w-1/2 flex flex-col justify-center items-center">
                 
-                <div class="relative w-full lg:pl-10 lg:pr-16" x-data="{ activeSlide: 1, slides: [1, 2, 3, 4] }">
-                    <!-- Slides -->
-                    <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
-                        <template x-for="slide in slides" :key="slide">
-                            <div x-show="activeSlide === slide" x-transition>
-                                <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
-                                    <img src="/images/image-product-1.jpg" :src="`/images/image-product-${slide}.jpg`" class="object-cover sm:rounded-2xl" alt="">
+                <div class="w-full lg:pl-10 lg:pr-16" x-data="{ activeSlide: 1, slides: [1, 2, 3, 4] }">
+                    <div class="relative">
+                        <!-- Slides -->
+                        <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
+                            <template x-for="slide in slides" :key="slide">
+                                <div x-show="activeSlide === slide" x-transition>
+                                    <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
+                                        <img src="/images/image-product-1.jpg" :src="`/images/image-product-${slide}.jpg`" class="object-cover sm:rounded-2xl" alt="">
+                                    </div>
                                 </div>
-                            </div>
-                        </template>
-                    </div>
-
-                    <!-- Prev/Next Arrows -->
-                    <div class="absolute inset-4 flex lg:hidden">
-                        <div class="flex items-center justify-start">
-                            <button class="flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-10 h-10" @click="activeSlide = activeSlide === 1 ? slides.length : activeSlide - 1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
+                            </template>
                         </div>
-                        
-                        <div class="flex items-center justify-end w-full">
-                            <button class="flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-10 h-10" @click="activeSlide = activeSlide === slides.length ? 1 : activeSlide + 1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
+
+                        <!-- Prev/Next Arrows -->
+                        <div class="absolute inset-4 flex lg:hidden">
+                            <div class="flex items-center justify-start">
+                                <button class="flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-10 h-10" @click="activeSlide = activeSlide === 1 ? slides.length : activeSlide - 1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <div class="flex items-center justify-end w-full">
+                                <button class="flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-10 h-10" @click="activeSlide = activeSlide === slides.length ? 1 : activeSlide + 1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
