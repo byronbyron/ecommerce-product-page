@@ -1,0 +1,25 @@
+@media (min-width: 1024px) {
+    .header__nav-link {
+        position: relative;
+
+        &::after {
+            content: '';
+            display: block;
+            height: 0.275rem;
+            background-color: theme('colors.orange');
+            position: absolute;
+            bottom: 0;
+            left: 0.75rem;
+            right: 0.75rem;
+            opacity: 0;
+            @apply transition;
+        }
+
+        &:hover,
+        &:focus {
+            &::after {
+                opacity: 1;
+            }
+        }
+    }
+}

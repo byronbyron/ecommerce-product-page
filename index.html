@@ -26,12 +26,12 @@
 <body>
     <header>      
         <div x-data="{ open: false }">
-            <nav class="bg-white dark:bg-gray-800">
+            <nav class="bg-white">
                 <div class="max-w-6xl mx-auto px-4 lg:px-6">
-                    <div class="flex items-center justify-between h-16 sm:h-20 lg:h-28">
+                    <div class="flex items-center justify-between h-16 sm:h-20 lg:h-auto lg:border-b">
                         <div class="flex items-center">
                             <div class="flex lg:hidden">
-                                <button class="text-gray-500 dark:text-gray-100 hover:text-gray-800 inline-flex items-center justify-center p-2 mr-2 rounded-md focus:outline-none" @click="open = true">
+                                <button class="text-gray-500 inline-flex items-center justify-center p-2 mr-2 rounded-md focus:outline-none" @click="open = true">
                                     <svg width="16" height="15" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 12v3H0v-3h16Zm0-6v3H0V6h16Zm0-6v3H0V0h16Z" fill-rule="evenodd"/></svg>
                                 </button>
                             </div>
@@ -42,19 +42,19 @@
 
                             <div class="hidden lg:block">
                                 <div class="ml-10 flex items-baseline space-x-4">
-                                    <a class="text-gray-500 dark:text-gray-100 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium" href="#">
+                                    <a class="header__nav-link text-gray-500 px-3 py-2 lg:py-11 rounded-md font-medium" href="#">
                                         Collections
                                     </a>
-                                    <a class="text-gray-500 dark:text-gray-100 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium" href="#">
+                                    <a class="header__nav-link text-gray-500 px-3 py-2 lg:py-11 rounded-md font-medium" href="#">
                                         Men
                                     </a>
-                                    <a class="text-gray-500 dark:text-gray-100 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium" href="#">
+                                    <a class="header__nav-link text-gray-500 px-3 py-2 lg:py-11 rounded-md font-medium" href="#">
                                         Women
                                     </a>
-                                    <a class="text-gray-500 dark:text-gray-100 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium" href="#">
+                                    <a class="header__nav-link text-gray-500 px-3 py-2 lg:py-11 rounded-md font-medium" href="#">
                                         About
                                     </a>
-                                    <a class="text-gray-500 dark:text-gray-100 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium" href="#">
+                                    <a class="header__nav-link text-gray-500 px-3 py-2 lg:py-11 rounded-md font-medium" href="#">
                                         Contact
                                     </a>
                                 </div>
@@ -78,23 +78,23 @@
 
                 <div class="lg:hidden">
                     <div class="w-3/4 h-full px-4 pt-4 pb-3 space-y-1 bg-white fixed top-0 left-0 transform z-50 transition-transform duration-300" :class="open ? 'translate-x-0' : '-translate-x-full'">
-                        <button class="text-gray-500 dark:text-gray-100 hover:text-gray-800 inline-flex items-center justify-center p-2 rounded-md focus:outline-none" @click="open = false">
+                        <button class="text-gray-500 inline-flex items-center justify-center p-2 rounded-md focus:outline-none" @click="open = false">
                             <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg"><path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="currentColor" fill-rule="evenodd"/></svg>
                         </button>
 
-                        <a class="text-gray-500 hover:text-gray-800 dark:text-gray-100 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="#">
+                        <a class="text-gray-500 block px-3 py-2 rounded-md text-base font-medium" href="#">
                             Collections
                         </a>
-                        <a class="text-gray-500 hover:text-gray-800 dark:text-gray-100 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="#">
+                        <a class="text-gray-500 block px-3 py-2 rounded-md text-base font-medium" href="#">
                             Men
                         </a>
-                        <a class="text-gray-500 hover:text-gray-800 dark:text-gray-100 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="#">
+                        <a class="text-gray-500 block px-3 py-2 rounded-md text-base font-medium" href="#">
                             Women
                         </a>
-                        <a class="text-gray-500 hover:text-gray-800 dark:text-gray-100 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="#">
+                        <a class="text-gray-500 block px-3 py-2 rounded-md text-base font-medium" href="#">
                             About
                         </a>
-                        <a class="text-gray-500 hover:text-gray-800 dark:text-gray-100 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="#">
+                        <a class="text-gray-500 block px-3 py-2 rounded-md text-base font-medium" href="#">
                             Contact
                         </a>
                     </div>
@@ -114,18 +114,20 @@
                 
                 <div class="relative w-full lg:pl-10 lg:pr-16" x-data="{ activeSlide: 1, slides: [1, 2, 3, 4] }">
                     <!-- Slides -->
-                    <template x-for="slide in slides" :key="slide">
-                        <div x-show="activeSlide === slide">
-                            <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
-                                <img src="/images/image-product-1.jpg" :src="`/images/image-product-${slide}.jpg`" class="object-cover sm:rounded-2xl" alt="">
+                    <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
+                        <template x-for="slide in slides" :key="slide">
+                            <div x-show="activeSlide === slide" x-transition>
+                                <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
+                                    <img src="/images/image-product-1.jpg" :src="`/images/image-product-${slide}.jpg`" class="object-cover sm:rounded-2xl" alt="">
+                                </div>
                             </div>
-                        </div>
-                    </template>
+                        </template>
+                    </div>
 
                     <!-- Prev/Next Arrows -->
                     <div class="absolute inset-4 flex lg:hidden">
                         <div class="flex items-center justify-start">
-                            <button class="flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-10 h-10" x-on:click="activeSlide = activeSlide === 1 ? slides.length : activeSlide - 1">
+                            <button class="flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-10 h-10" @click="activeSlide = activeSlide === 1 ? slides.length : activeSlide - 1">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
                                 </svg>
@@ -133,7 +135,7 @@
                         </div>
                         
                         <div class="flex items-center justify-end w-full">
-                            <button class="flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-10 h-10" x-on:click="activeSlide = activeSlide === slides.length ? 1 : activeSlide + 1">
+                            <button class="flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-10 h-10" @click="activeSlide = activeSlide === slides.length ? 1 : activeSlide + 1">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                                 </svg>
@@ -142,14 +144,17 @@
                     </div>
 
                     <!-- Buttons -->
-                    <div class="absolute w-full flex items-center justify-center px-4">
+                    <div class="hidden lg:flex flex-wrap -mx-4 items-center">
                         <template x-for="slide in slides" :key="slide">
-                            <button class="flex-1 mt-4 mx-2 mb-0 overflow-hidden"
-                            :class="{ 
-                                'bg-orange': activeSlide === slide,
-                                'bg-teal': activeSlide !== slide 
-                            }" 
-                            x-on:click="activeSlide = slide"></button>
+                            <div class="w-1/4 mt-8 px-4 mb-0">
+                                <button class="border-2 rounded-xl overflow-hidden transition" @click="activeSlide = slide" :class="{
+                                    'border-orange': activeSlide === slide,
+                                    'border-transparent': activeSlide !== slide 
+                                }">
+                                    <img src="/images/image-product-1-thumbnail.jpg" :src="`/images/image-product-${slide}-thumbnail.jpg`" class="object-cover hover:opacity-50 transition" :class="{
+                                    'opacity-50': activeSlide === slide }" alt="">
+                                </button>
+                            </div>
                         </template>
                     </div>
                 </div>
@@ -179,12 +184,12 @@
                         <label for="quantity" class="sr-only">Quantity</label>
                         <input type="number" min="1" value="1" :value="quantity" id="quantity" class="block rounded-lg text-center appearance-none w-full p-4 bg-gray-100 font-bold text-black shadow-sm">
 
-                        <button class="flex items-center justify-center absolute top-1/2 -mt-5 left-0.5 w-10 h-10 bg-gray-100" @click.prevent="quantity--" :disabled="quantity <= 1">
-                            <svg width="12" height="4" class="text-orange hover:text-yellow-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M11.357 3.332A.641.641 0 0 0 12 2.69V.643A.641.641 0 0 0 11.357 0H.643A.641.641 0 0 0 0 .643v2.046c0 .357.287.643.643.643h10.714Z" id="a"/></defs><use fill-rule="nonzero" xlink:href="#a"/></svg>
+                        <button class="flex items-center justify-center absolute top-1/2 -mt-5 left-0.5 w-10 h-10 bg-gray-100 text-orange hover:text-opacity-70" @click.prevent="quantity--" :disabled="quantity <= 1">
+                            <svg width="12" height="4" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M11.357 3.332A.641.641 0 0 0 12 2.69V.643A.641.641 0 0 0 11.357 0H.643A.641.641 0 0 0 0 .643v2.046c0 .357.287.643.643.643h10.714Z" id="a"/></defs><use fill-rule="nonzero" xlink:href="#a"/></svg>
                         </button>
 
-                        <button class="flex items-center justify-center absolute top-1/2 -mt-5 right-0.5 w-10 h-10 bg-gray-100" @click.prevent="quantity++">
-                            <svg width="12" height="12" class="text-orange hover:text-yellow-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M12 7.023V4.977a.641.641 0 0 0-.643-.643h-3.69V.643A.641.641 0 0 0 7.022 0H4.977a.641.641 0 0 0-.643.643v3.69H.643A.641.641 0 0 0 0 4.978v2.046c0 .356.287.643.643.643h3.69v3.691c0 .356.288.643.644.643h2.046a.641.641 0 0 0 .643-.643v-3.69h3.691A.641.641 0 0 0 12 7.022Z" id="b"/></defs><use fill-rule="nonzero" xlink:href="#b"/></svg>
+                        <button class="flex items-center justify-center absolute top-1/2 -mt-5 right-0.5 w-10 h-10 bg-gray-100 text-orange hover:text-opacity-70" @click.prevent="quantity++">
+                            <svg width="12" height="12" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M12 7.023V4.977a.641.641 0 0 0-.643-.643h-3.69V.643A.641.641 0 0 0 7.022 0H4.977a.641.641 0 0 0-.643.643v3.69H.643A.641.641 0 0 0 0 4.978v2.046c0 .356.287.643.643.643h3.69v3.691c0 .356.288.643.644.643h2.046a.641.641 0 0 0 .643-.643v-3.69h3.691A.641.641 0 0 0 12 7.022Z" id="b"/></defs><use fill-rule="nonzero" xlink:href="#b"/></svg>
                         </button>
                     </div>
 
