@@ -52,7 +52,7 @@
     }
   </style>
 
-  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="./css/app.css">
 
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
@@ -71,7 +71,7 @@
                             </div>
 
                             <a class="flex-shrink-0 mb-0.5" href="/">
-                                <img class="" src="images/logo.svg" alt="Sneaker Company" width="138" height="20"><span class="sr-only">Sneakers</span>
+                                <img class="" src="./images/logo.svg" alt="Sneaker Company" width="138" height="20"><span class="sr-only">Sneakers</span>
                             </a>
 
                             <div class="hidden lg:block">
@@ -103,7 +103,7 @@
                                 </button>
 
                                 <a href="#" class="w-12 h-12 flex items-center justify-center">
-                                    <img src="images/image-avatar.png" alt="image-avatar" class="w-6 h-6" width="50" height="50"><span class="sr-only">John Doe</span>
+                                    <img src="./images/image-avatar.png" alt="image-avatar" class="w-6 h-6" width="50" height="50"><span class="sr-only">John Doe</span>
                                 </a>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                                     <template x-for="slide in slides" :key="slide">
                                         <div x-show="activeSlide === slide" x-transition>
                                             <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
-                                                <img src="images/image-product-1.webp" :src="`/images/image-product-${slide}.webp`" class="object-cover sm:rounded-2xl cursor-pointer" alt="" width="448" height="448" @click.prevent="open = true">
+                                                <img src="./images/image-product-1.webp" :src="`./images/image-product-${slide}.webp`" class="object-cover sm:rounded-2xl cursor-pointer" alt="" width="448" height="448" @click.prevent="open = true">
                                             </div>
                                         </div>
                                     </template>
@@ -189,7 +189,7 @@
                                             'border-orange': activeSlide === slide,
                                             'border-transparent': activeSlide !== slide 
                                         }">
-                                            <img src="images/image-product-1-thumbnail.webp" :src="`/images/image-product-${slide}-thumbnail.webp`" class="object-cover hover:opacity-50 transition" :class="{
+                                            <img src="./images/image-product-1-thumbnail.webp" :src="`./images/image-product-${slide}-thumbnail.webp`" class="object-cover hover:opacity-50 transition" :class="{
                                             'opacity-50': activeSlide === slide }" alt="product image 1" :alt="`product image ${slide}`" width="84" height="84">
                                         </button>
                                     </div>
@@ -213,7 +213,7 @@
                                             <template x-for="slide in slides" :key="slide">
                                                 <div x-show="activeSlide === slide" x-transition>
                                                     <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
-                                                        <img src="images/image-product-1.webp" :src="`/images/image-product-${slide}.webp`" class="object-cover sm:rounded-2xl" alt="" width="550" height="550" @click.prevent="open = true">
+                                                        <img src="./images/image-product-1.webp" :src="`./images/image-product-${slide}.webp`" class="object-cover sm:rounded-2xl" alt="" width="550" height="550" @click.prevent="open = true">
                                                     </div>
                                                 </div>
                                             </template>
@@ -244,7 +244,7 @@
                                                     'border-black': activeSlide !== slide,
                                                     'border-opacity-75': activeSlide !== slide  
                                                 }">
-                                                    <img src="images/image-product-1-thumbnail.webp" :src="`/images/image-product-${slide}-thumbnail.webp`" class="object-cover hover:opacity-50 transition" :class="{
+                                                    <img src="./images/image-product-1-thumbnail.webp" :src="`./images/image-product-${slide}-thumbnail.webp`" class="object-cover hover:opacity-50 transition" :class="{
                                                     'opacity-50': activeSlide === slide }" alt="product image 1" :alt="`product image ${slide}`" width="84" height="84">
                                                 </button>
                                             </div>
