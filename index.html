@@ -190,7 +190,7 @@
                                             'border-transparent': activeSlide !== slide 
                                         }">
                                             <img src="/images/image-product-1-thumbnail.webp" :src="`/images/image-product-${slide}-thumbnail.webp`" class="object-cover hover:opacity-50 transition" :class="{
-                                            'opacity-50': activeSlide === slide }" alt="" width="84" height="84">
+                                            'opacity-50': activeSlide === slide }" alt="product image 1" :alt="`product image ${slide}`" width="84" height="84">
                                         </button>
                                     </div>
                                 </template>
@@ -245,7 +245,7 @@
                                                     'border-opacity-75': activeSlide !== slide  
                                                 }">
                                                     <img src="/images/image-product-1-thumbnail.webp" :src="`/images/image-product-${slide}-thumbnail.webp`" class="object-cover hover:opacity-50 transition" :class="{
-                                                    'opacity-50': activeSlide === slide }" alt="" width="84" height="84">
+                                                    'opacity-50': activeSlide === slide }" alt="product image 1" :alt="`product image ${slide}`" width="84" height="84">
                                                 </button>
                                             </div>
                                         </template>
