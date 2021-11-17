@@ -128,7 +128,11 @@
                                                 <template x-for="(product, index) in products" :key="index">
                                                     <div class="flex text-gray-500 mb-6">
                                                         <div class="flex-none mr-4">
-                                                            <img src="./images/image-product-1.webp" alt="" class="w-13 h-13 rounded-md" width="50" height="50">
+                                                            <picture>
+                                                                <source srcset="./images/image-product-1.webp" type="image/webp">
+                                                                <source srcset="./images/image-product-1.jpg" type="image/jpeg"> 
+                                                                <img src="./images/image-product-1.jpg" alt="" class="w-13 h-13 rounded-md" width="50" height="50">
+                                                            </picture>
                                                         </div>
 
                                                         <div class="flex-1">
@@ -248,9 +252,12 @@
                                                 'border-orange': activeSlide === slide,
                                                 'border-transparent': activeSlide !== slide 
                                             }">
-                                                
-                                                <img src="./images/image-product-1-thumbnail.webp" :src="`./images/image-product-${slide}-thumbnail.webp`" class="object-cover hover:opacity-50 transition" :class="{
+                                                <picture>
+                                                    <source srcset="./images/image-product-1-thumbnail.webp" :srcset="`./images/image-product-${slide}-thumbnail.webp`" type="image/webp">
+                                                    <source srcset="./images/image-product-1-thumbnail.jpg" :srcset="`./images/image-product-${slide}-thumbnail.jpg`" type="image/jpeg">
+                                                    <img src="./images/image-product-1-thumbnail.jpg" :src="`./images/image-product-${slide}-thumbnail.jpg`" class="object-cover hover:opacity-50 transition" :class="{
                                                 'opacity-50': activeSlide === slide }" alt="product image 1" :alt="`product image ${slide}`" width="84" height="84">
+                                                </picture>
                                             </button>
                                         </div>
                                     </template>
@@ -308,8 +315,11 @@
                                                         'border-black': activeSlide !== slide,
                                                         'border-opacity-75': activeSlide !== slide  
                                                     }">
-                                                        <img src="./images/image-product-1-thumbnail.webp" :src="`./images/image-product-${slide}-thumbnail.webp`" class="object-cover hover:opacity-50 transition" :class="{
-                                                        'opacity-50': activeSlide === slide }" alt="product image 1" :alt="`product image ${slide}`" width="84" height="84">
+                                                        <picture>
+                                                            <source srcset="./images/image-product-1-thumbnail.webp" :srcset="`./images/image-product-${slide}-thumbnail.webp`" type="image/webp">
+                                                            <source srcset="./images/image-product-1-thumbnail.jpg" :srcset="`./images/image-product-${slide}-thumbnail.jpg`" type="image/jpeg">
+                                                            <img src="./images/image-product-1-thumbnail.jpg" :src="`./images/image-product-${slide}-thumbnail.jpg`" class="object-cover hover:opacity-50 transition" :class="{'opacity-50': activeSlide === slide }" alt="product image 1" :alt="`product image ${slide}`" width="84" height="84">
+                                                        </picture>
                                                     </button>
                                                 </div>
                                             </template>
