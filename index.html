@@ -52,316 +52,349 @@
     }
   </style>
 
+  <style>
+      [x-cloak] {
+        display: none !important;
+      }
+  </style>
+
   <link rel="stylesheet" href="./css/app.css">
 
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body>
-    <header>      
-        <div x-data="{ open: false }">
-            <nav class="bg-white">
-                <div class="max-w-6xl mx-auto px-4 lg:px-6">
-                    <div class="relative flex items-center justify-between h-16 sm:h-20 lg:h-auto lg:border-b">
-                        <div class="flex items-center">
-                            <div class="flex lg:hidden">
-                                <button class="text-gray-500 inline-flex items-center justify-center p-2 mr-2 rounded-md focus:outline-none" @click="open = true">
-                                    <svg width="16" height="15" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 12v3H0v-3h16Zm0-6v3H0V6h16Zm0-6v3H0V0h16Z" fill-rule="evenodd"/></svg><span class="sr-only">Menu</span>
-                                </button>
-                            </div>
-
-                            <a class="flex-shrink-0 mb-0.5" href="./">
-                                <img class="" src="./images/logo.svg" alt="Sneaker Company" width="138" height="20"><span class="sr-only">Sneakers</span>
-                            </a>
-
-                            <div class="hidden lg:block">
-                                <div class="ml-10 flex items-baseline space-x-4">
-                                    <a class="header__nav-link text-gray-500 px-3 py-2 lg:py-11 rounded-md font-medium" href="#">
-                                        Collections
-                                    </a>
-                                    <a class="header__nav-link text-gray-500 px-3 py-2 lg:py-11 rounded-md font-medium" href="#">
-                                        Men
-                                    </a>
-                                    <a class="header__nav-link text-gray-500 px-3 py-2 lg:py-11 rounded-md font-medium" href="#">
-                                        Women
-                                    </a>
-                                    <a class="header__nav-link text-gray-500 px-3 py-2 lg:py-11 rounded-md font-medium" href="#">
-                                        About
-                                    </a>
-                                    <a class="header__nav-link text-gray-500 px-3 py-2 lg:py-11 rounded-md font-medium" href="#">
-                                        Contact
-                                    </a>
+    <div x-data="productCart()">
+        <header>
+            <div x-data="{ open: false }">
+                <nav class="bg-white">
+                    <div class="max-w-6xl mx-auto px-4 lg:px-6">
+                        <div class="relative flex items-center justify-between h-16 sm:h-20 lg:h-auto lg:border-b">
+                            <div class="flex items-center">
+                                <div class="flex lg:hidden">
+                                    <button class="text-gray-500 inline-flex items-center justify-center p-2 mr-2 rounded-md focus:outline-none" @click="open = true">
+                                        <svg width="16" height="15" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 12v3H0v-3h16Zm0-6v3H0V6h16Zm0-6v3H0V0h16Z" fill-rule="evenodd"/></svg><span class="sr-only">Menu</span>
+                                    </button>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="block">
-                            <div class="ml-4 -mr-1 flex items-center lg:ml-6" x-data="{ basketOpen: false }">
-                                <button class="w-13 h-13 flex items-center justify-center relative" @click="basketOpen = true">
-                                    <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="#69707D" fill-rule="nonzero"/></svg>
-
-                                    <span class="leading-none font-bold text-xxs text-white bg-orange inline-block rounded-full px-2 py-0.5 absolute top-2 right-1">1</span>
-                                </button>
-
-                                <div 
-                                    class="absolute z-50 top-full left-0 sm:left-auto right-0 mt-2 sm:-mt-4 -mx-2 flex flex-col bg-white rounded-lg shadow-2xl sm:w-80" 
-                                    x-show="basketOpen" 
-                                    @click.away="basketOpen = false"
-                                    x-transition
-                                  >
-                                    <div class="px-6 py-5 border-b">
-                                        <span class="font-bold">Cart</span>
-                                    </div>
-
-                                    <div class="p-6 pb-7.5">
-                                        <div class="flex text-gray-500 mb-6">
-                                            <div class="flex-none mr-4">
-                                                <img src="./images/image-product-1.webp" alt="" class="w-13 h-13 rounded-md" width="50" height="50">
-                                            </div>
-
-                                            <div class="flex-1">
-                                                <div class="">
-                                                    <p class="leading-6 h-6 overflow-hidden">Autumn Limited Edition Sneakers</p>
-                                                    <p>$125.00 x 3 <span class="font-bold text-black">$375.00</span></p>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex-none">
-                                                <button class="flex items-center justify-center w-12 h-12 text-gray-300 hover:text-gray-400 transition -mr-4">
-                                                    <svg width="14" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M0 2.625V1.75C0 1.334.334 1 .75 1h3.5l.294-.584A.741.741 0 0 1 5.213 0h3.571a.75.75 0 0 1 .672.416L9.75 1h3.5c.416 0 .75.334.75.75v.875a.376.376 0 0 1-.375.375H.375A.376.376 0 0 1 0 2.625Zm13 1.75V14.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 1 14.5V4.375C1 4.169 1.169 4 1.375 4h11.25c.206 0 .375.169.375.375ZM4.5 6.5c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Zm3 0c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Zm3 0c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Z" id="a"/></defs><use fill-rule="nonzero" xlink:href="#a"/></svg>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <!-- <div class="flex text-gray-500 mb-6">
-                                            <div class="flex-none mr-4">
-                                                <img src="./images/image-product-1.webp" alt="" class="w-13 h-13 rounded-md" width="50" height="50">
-                                            </div>
-
-                                            <div class="flex-1">
-                                                <div class="">
-                                                    <p class="leading-6 h-6 overflow-hidden">Autumn Limited Edition Sneakers</p>
-                                                    <p>$125.00 x 3 <span class="font-bold text-black">$375.00</span></p>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex-none">
-                                                <button class="flex items-center justify-center w-12 h-12 text-gray-300 -mr-4">
-                                                    <svg width="14" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M0 2.625V1.75C0 1.334.334 1 .75 1h3.5l.294-.584A.741.741 0 0 1 5.213 0h3.571a.75.75 0 0 1 .672.416L9.75 1h3.5c.416 0 .75.334.75.75v.875a.376.376 0 0 1-.375.375H.375A.376.376 0 0 1 0 2.625Zm13 1.75V14.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 1 14.5V4.375C1 4.169 1.169 4 1.375 4h11.25c.206 0 .375.169.375.375ZM4.5 6.5c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Zm3 0c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Zm3 0c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Z" id="a"/></defs><use fill-rule="nonzero" xlink:href="#a"/></svg>
-                                                </button>
-                                            </div>
-                                        </div> -->
-                                        
-                                        <button type="button" class="p-4 bg-orange hover:opacity-80 text-white w-full transition text-center text-base font-semibold rounded-lg">
-                                            <span>Checkout</span>
-                                        </button>
-                                    </div>
-                                  </div>
-
-                                <a href="#" class="w-13 h-13 flex items-center justify-center lg:ml-8">
-                                    <img src="./images/image-avatar.png" alt="image-avatar" class="w-7 h-7 lg:w-13 lg:h-13 border-2 border-transparent hover:border-orange rounded-full transition" width="50" height="50"><span class="sr-only">John Doe</span>
+                                <a class="flex-shrink-0 mb-0.5" href="./">
+                                    <img class="" src="./images/logo.svg" alt="Sneaker Company" width="138" height="20"><span class="sr-only">Sneakers</span>
                                 </a>
+
+                                <div class="hidden lg:block">
+                                    <div class="ml-10 flex items-baseline space-x-4">
+                                        <a class="header__nav-link text-gray-500 px-3 py-2 lg:py-11 rounded-md font-medium" href="#">
+                                            Collections
+                                        </a>
+                                        <a class="header__nav-link text-gray-500 px-3 py-2 lg:py-11 rounded-md font-medium" href="#">
+                                            Men
+                                        </a>
+                                        <a class="header__nav-link text-gray-500 px-3 py-2 lg:py-11 rounded-md font-medium" href="#">
+                                            Women
+                                        </a>
+                                        <a class="header__nav-link text-gray-500 px-3 py-2 lg:py-11 rounded-md font-medium" href="#">
+                                            About
+                                        </a>
+                                        <a class="header__nav-link text-gray-500 px-3 py-2 lg:py-11 rounded-md font-medium" href="#">
+                                            Contact
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="lg:hidden">
-                    <div class="w-3/4 h-full px-4 pt-4 pb-3 space-y-1 bg-white fixed top-0 left-0 transform z-50 transition-transform duration-300" :class="open ? 'translate-x-0' : '-translate-x-full'">
-                        <button class="text-gray-500 inline-flex items-center justify-center p-2 rounded-md focus:outline-none mb-6" @click="open = false">
-                            <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg"><path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="currentColor" fill-rule="evenodd"/></svg><span class="sr-only">Close</span>
-                        </button>
+                            <div class="block">
+                                <div class="ml-4 -mr-1 flex items-center lg:ml-6" x-data="{ basketOpen: false }">
+                                    <button class="w-13 h-13 flex items-center justify-center relative" @click="basketOpen = true">
+                                        <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="#69707D" fill-rule="nonzero"/></svg>
 
-                        <a class="text-lg text-black font-bold block p-2" href="#">
-                            Collections
-                        </a>
-                        <a class="text-lg text-black font-bold block p-2" href="#">
-                            Men
-                        </a>
-                        <a class="text-lg text-black font-bold block p-2" href="#">
-                            Women
-                        </a>
-                        <a class="text-lg text-black font-bold block p-2" href="#">
-                            About
-                        </a>
-                        <a class="text-lg text-black font-bold block p-2" href="#">
-                            Contact
-                        </a>
-                    </div>
+                                        <span class="sr-only">Cart</span>
 
-                    <div class="bg-black absolute inset-0 z-20 opacity-75 transition duration-300" :class="open ? 'block' : 'hidden'" @click="open = false"></div>
-                </div>
-            </nav>
-        </div>
-    </header>
+                                        <span x-show="products.length" x-text="products.length" x-cloak class="leading-none font-bold text-xxs text-white bg-orange inline-block rounded-full px-2 py-0.5 absolute top-2 right-1"></span>
+                                    </button>
 
-    <main>
+                                    <div 
+                                        class="absolute z-50 top-full left-0 sm:left-auto right-0 mt-2 sm:-mt-4 -mx-2 flex flex-col bg-white rounded-lg shadow-2xl sm:w-80" 
+                                        x-show="basketOpen"
+                                        @click.away="basketOpen = false"
+                                        x-transition
+                                        x-cloak
+                                      >
+                                        <div class="px-6 py-5 border-b">
+                                            <span class="font-bold">Cart</span>
+                                        </div>
 
-        <div class="sm:max-w-lg md:max-w-xl lg:max-w-6xl mx-auto lg:px-6 sm:pt-2 lg:pt-20 lg:flex">
+                                        <div class="p-6 pb-7.5">
+                                            <div x-show="products.length">
+                                                <template x-for="(product, index) in products" :key="index">
+                                                    <div class="flex text-gray-500 mb-6">
+                                                        <div class="flex-none mr-4">
+                                                            <img src="./images/image-product-1.webp" alt="" class="w-13 h-13 rounded-md" width="50" height="50">
+                                                        </div>
 
-            <div class="lg:w-1/2 block lg:flex flex-col justify-center items-center">
-                
-                <div x-data="{open: false}">
+                                                        <div class="flex-1">
+                                                            <div class="">
+                                                                <p class="leading-6 h-6 overflow-hidden">Autumn Limited Edition Sneakers</p>
+                                                                <p>$125.00 x <span x-text="product.product"></span> <span class="font-bold text-black">$375.00</span></p>
+                                                            </div>
+                                                        </div>
 
-                    <div class="w-full lg:pl-10 lg:pr-16">
-                        <div x-data="{ activeSlide: 1, slides: [1, 2, 3, 4] }">
-                            <div class="relative">
-                                <!-- Slides -->
-                                <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
-                                    <template x-for="slide in slides" :key="slide">
-                                        <div x-show="activeSlide === slide" x-transition>
-                                            <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
-                                                <img src="./images/image-product-1.webp" :src="`./images/image-product-${slide}.webp`" class="object-cover sm:rounded-2xl cursor-pointer pointer-events-none lg:pointer-events-auto" alt="" width="448" height="448" @click.prevent="open = true">
+                                                        <div class="flex-none">
+                                                            <button class="flex items-center justify-center w-12 h-12 text-gray-300 hover:text-gray-400 transition -mr-4" @click="deleteProduct(index)">
+                                                                <svg width="14" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M0 2.625V1.75C0 1.334.334 1 .75 1h3.5l.294-.584A.741.741 0 0 1 5.213 0h3.571a.75.75 0 0 1 .672.416L9.75 1h3.5c.416 0 .75.334.75.75v.875a.376.376 0 0 1-.375.375H.375A.376.376 0 0 1 0 2.625Zm13 1.75V14.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 1 14.5V4.375C1 4.169 1.169 4 1.375 4h11.25c.206 0 .375.169.375.375ZM4.5 6.5c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Zm3 0c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Zm3 0c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Z" id="a"/></defs><use fill-rule="nonzero" xlink:href="#a"/></svg>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                                
+                                                <button type="button" class="p-4 bg-orange hover:opacity-80 text-white w-full transition text-center text-base font-semibold rounded-lg">
+                                                    <span>Checkout</span>
+                                                </button>
+                                            </div>
+
+                                            <div x-show="!products.length" class="flex items-center justify-center text-gray-500 h-36">
+                                                <p class="text-sm font-semibold">Your cart is empty.</p>
                                             </div>
                                         </div>
-                                    </template>
-                                </div>
+                                      </div>
 
-                                <!-- Prev/Next Arrows -->
-                                <div class="absolute inset-4 flex lg:hidden">
-                                    <div class="flex items-center justify-start">
-                                        <button class="flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-10 h-10" @click="activeSlide = activeSlide === 1 ? slides.length : activeSlide - 1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                            </svg><span class="sr-only">Previous</span>
-                                        </button>
-                                    </div>
-                                    
-                                    <div class="flex items-center justify-end w-full">
-                                        <button class="flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-10 h-10" @click="activeSlide = activeSlide === slides.length ? 1 : activeSlide + 1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                                            </svg><span class="sr-only">Next</span>
-                                        </button>
-                                    </div>
+                                    <a href="#" class="w-13 h-13 flex items-center justify-center lg:ml-8">
+                                        <img src="./images/image-avatar.png" alt="image-avatar" class="w-7 h-7 lg:w-13 lg:h-13 border-2 border-transparent hover:border-orange rounded-full transition" width="50" height="50"><span class="sr-only">John Doe</span>
+                                    </a>
                                 </div>
-                            </div>
-
-                            <!-- Buttons -->
-                            <div class="hidden lg:flex flex-wrap -mx-4 items-center">
-                                <template x-for="slide in slides" :key="slide">
-                                    <div class="w-1/4 mt-8 px-4 mb-0">
-                                        <button class="border-2 rounded-xl overflow-hidden transition" @click="activeSlide = slide" :class="{
-                                            'border-orange': activeSlide === slide,
-                                            'border-transparent': activeSlide !== slide 
-                                        }">
-                                            <img src="./images/image-product-1-thumbnail.webp" :src="`./images/image-product-${slide}-thumbnail.webp`" class="object-cover hover:opacity-50 transition" :class="{
-                                            'opacity-50': activeSlide === slide }" alt="product image 1" :alt="`product image ${slide}`" width="84" height="84">
-                                        </button>
-                                    </div>
-                                </template>
                             </div>
                         </div>
                     </div>
 
-                    <div x-show="open" x-transition.opacity @keyup.escape.window="open = false" class="p-4 fixed flex justify-center items-center inset-0 bg-black bg-opacity-75 z-50">
-                        <div x-show.transition="open" @click.outside="open = false" class="">
-                            <div class="relative">
-                                <button @click.prevent="open = false"
-                                    class="p-4 inline-block text-white hover:text-orange absolute -top-12 -right-4 z-50">
-                                    <svg fill="currentColor" width="14" height="15" xmlns="http://www.w3.org/2000/svg"><path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill-rule="evenodd"/></svg><span class="sr-only">Close</span>
-                                </button>
+                    <div class="lg:hidden">
+                        <div class="w-3/4 h-full px-4 pt-4 pb-3 space-y-1 bg-white fixed top-0 left-0 transform z-50 transition-transform duration-300" :class="open ? 'translate-x-0' : '-translate-x-full'">
+                            <button class="text-gray-500 inline-flex items-center justify-center p-2 rounded-md focus:outline-none mb-6" @click="open = false">
+                                <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg"><path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="currentColor" fill-rule="evenodd"/></svg><span class="sr-only">Close</span>
+                            </button>
 
-                                <div x-data="{ activeSlide: 1, slides: [1, 2, 3, 4] }" @keyup.left.window="open ? activeSlide = activeSlide === 1 ? slides.length : activeSlide - 1 : ''" @keyup.right.window="open ? activeSlide = activeSlide === slides.length ? 1 : activeSlide + 1 : ''">
-                                    <div class="relative lightbox-slides">
-                                        <!-- Slides -->
-                                        <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
-                                            <template x-for="slide in slides" :key="slide">
-                                                <div x-show="activeSlide === slide" x-transition>
-                                                    <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
-                                                        <img src="./images/image-product-1.webp" :src="`./images/image-product-${slide}.webp`" class="object-cover sm:rounded-2xl" alt="" width="550" height="550" @click.prevent="open = true">
-                                                    </div>
+                            <a class="text-lg text-black font-bold block p-2" href="#">
+                                Collections
+                            </a>
+                            <a class="text-lg text-black font-bold block p-2" href="#">
+                                Men
+                            </a>
+                            <a class="text-lg text-black font-bold block p-2" href="#">
+                                Women
+                            </a>
+                            <a class="text-lg text-black font-bold block p-2" href="#">
+                                About
+                            </a>
+                            <a class="text-lg text-black font-bold block p-2" href="#">
+                                Contact
+                            </a>
+                        </div>
+
+                        <div class="bg-black absolute inset-0 z-20 opacity-75 transition duration-300" :class="open ? 'block' : 'hidden'" @click="open = false"></div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+
+            <div class="sm:max-w-lg md:max-w-xl lg:max-w-6xl mx-auto lg:px-6 sm:pt-2 lg:pt-20 lg:flex">
+
+                <div class="lg:w-1/2 block lg:flex flex-col justify-center items-center">
+                    
+                    <div x-data="{open: false}">
+
+                        <div class="w-full lg:pl-10 lg:pr-16">
+                            <div x-data="{ activeSlide: 1, slides: [1, 2, 3, 4] }">
+                                <div class="relative">
+                                    <!-- Slides -->
+                                    <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
+                                        <template x-for="slide in slides" :key="slide">
+                                            <div x-show="activeSlide === slide" x-transition>
+                                                <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
+                                                    <img src="./images/image-product-1.webp" :src="`./images/image-product-${slide}.webp`" class="object-cover sm:rounded-2xl cursor-pointer pointer-events-none lg:pointer-events-auto" alt="" width="448" height="448" @click.prevent="open = true">
                                                 </div>
-                                            </template>
-                                        </div>
+                                            </div>
+                                        </template>
+                                    </div>
 
-                                        <!-- Prev/Next Arrows -->
-                                        <div class="absolute -inset-6 flex">
-                                            <button class="absolute top-1/2 left-0 -mt-6 flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-12 h-12" @click="activeSlide = activeSlide === 1 ? slides.length : activeSlide - 1">
+                                    <!-- Prev/Next Arrows -->
+                                    <div class="absolute inset-4 flex lg:hidden">
+                                        <div class="flex items-center justify-start">
+                                            <button class="flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-10 h-10" @click="activeSlide = activeSlide === 1 ? slides.length : activeSlide - 1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
                                                 </svg><span class="sr-only">Previous</span>
                                             </button>
-                                            
-                                            <button class="absolute top-1/2 right-0 -mt-6 flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-12 h-12" @click="activeSlide = activeSlide === slides.length ? 1 : activeSlide + 1">
+                                        </div>
+                                        
+                                        <div class="flex items-center justify-end w-full">
+                                            <button class="flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-10 h-10" @click="activeSlide = activeSlide === slides.length ? 1 : activeSlide + 1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                                                 </svg><span class="sr-only">Next</span>
                                             </button>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <!-- Buttons -->
-                                    <div class="max-w-lg flex flex-wrap mx-auto justify-center lightbox-buttons">
-                                        <template x-for="slide in slides" :key="slide">
-                                            <div class="mt-8 px-4 mb-0">
-                                                <button class="border-2 rounded-xl overflow-hidden transition bg-white" @click="activeSlide = slide" :class="{
-                                                    'border-orange': activeSlide === slide,
-                                                    'border-black': activeSlide !== slide,
-                                                    'border-opacity-75': activeSlide !== slide  
-                                                }">
-                                                    <img src="./images/image-product-1-thumbnail.webp" :src="`./images/image-product-${slide}-thumbnail.webp`" class="object-cover hover:opacity-50 transition" :class="{
-                                                    'opacity-50': activeSlide === slide }" alt="product image 1" :alt="`product image ${slide}`" width="84" height="84">
+                                <!-- Buttons -->
+                                <div class="hidden lg:flex flex-wrap -mx-4 items-center">
+                                    <template x-for="slide in slides" :key="slide">
+                                        <div class="w-1/4 mt-8 px-4 mb-0">
+                                            <button class="border-2 rounded-xl overflow-hidden transition" @click="activeSlide = slide" :class="{
+                                                'border-orange': activeSlide === slide,
+                                                'border-transparent': activeSlide !== slide 
+                                            }">
+                                                <img src="./images/image-product-1-thumbnail.webp" :src="`./images/image-product-${slide}-thumbnail.webp`" class="object-cover hover:opacity-50 transition" :class="{
+                                                'opacity-50': activeSlide === slide }" alt="product image 1" :alt="`product image ${slide}`" width="84" height="84">
+                                            </button>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div x-show="open" x-cloak x-transition.opacity @keyup.escape.window="open = false" class="p-4 fixed flex justify-center items-center inset-0 bg-black bg-opacity-75 z-50">
+                            <div x-show.transition="open" @click.outside="open = false" class="">
+                                <div class="relative">
+                                    <button @click.prevent="open = false"
+                                        class="p-4 inline-block text-white hover:text-orange absolute -top-12 -right-4 z-50">
+                                        <svg fill="currentColor" width="14" height="15" xmlns="http://www.w3.org/2000/svg"><path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill-rule="evenodd"/></svg><span class="sr-only">Close</span>
+                                    </button>
+
+                                    <div x-data="{ activeSlide: 1, slides: [1, 2, 3, 4] }" @keyup.left.window="open ? activeSlide = activeSlide === 1 ? slides.length : activeSlide - 1 : ''" @keyup.right.window="open ? activeSlide = activeSlide === slides.length ? 1 : activeSlide + 1 : ''">
+                                        <div class="relative lightbox-slides">
+                                            <!-- Slides -->
+                                            <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
+                                                <template x-for="slide in slides" :key="slide">
+                                                    <div x-show="activeSlide === slide" x-transition>
+                                                        <div class="aspect-w-5 aspect-h-4 lg:aspect-w-1 lg:aspect-h-1">
+                                                            <img src="./images/image-product-1.webp" :src="`./images/image-product-${slide}.webp`" class="object-cover sm:rounded-2xl" alt="" width="550" height="550" @click.prevent="open = true">
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </div>
+
+                                            <!-- Prev/Next Arrows -->
+                                            <div class="absolute -inset-6 flex">
+                                                <button class="absolute top-1/2 left-0 -mt-6 flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-12 h-12" @click="activeSlide = activeSlide === 1 ? slides.length : activeSlide - 1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                                    </svg><span class="sr-only">Previous</span>
+                                                </button>
+                                                
+                                                <button class="absolute top-1/2 right-0 -mt-6 flex justify-center items-center bg-white text-black hover:text-orange font-bold rounded-full w-12 h-12" @click="activeSlide = activeSlide === slides.length ? 1 : activeSlide + 1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                                    </svg><span class="sr-only">Next</span>
                                                 </button>
                                             </div>
-                                        </template>
+                                        </div>
+
+                                        <!-- Buttons -->
+                                        <div class="max-w-lg flex flex-wrap mx-auto justify-center lightbox-buttons">
+                                            <template x-for="slide in slides" :key="slide">
+                                                <div class="mt-8 px-4 mb-0">
+                                                    <button class="border-2 rounded-xl overflow-hidden transition bg-white" @click="activeSlide = slide" :class="{
+                                                        'border-orange': activeSlide === slide,
+                                                        'border-black': activeSlide !== slide,
+                                                        'border-opacity-75': activeSlide !== slide  
+                                                    }">
+                                                        <img src="./images/image-product-1-thumbnail.webp" :src="`./images/image-product-${slide}-thumbnail.webp`" class="object-cover hover:opacity-50 transition" :class="{
+                                                        'opacity-50': activeSlide === slide }" alt="product image 1" :alt="`product image ${slide}`" width="84" height="84">
+                                                    </button>
+                                                </div>
+                                            </template>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="lg:w-1/2 p-6 lg:pl-16 lg:pr-10">
-                <p class="font-bold uppercase tracking-widest text-xs text-yellow-500 mb-3">Sneaker Company</p>
+                <div class="lg:w-1/2 p-6 lg:pl-16 lg:pr-10">
+                    <p class="font-bold uppercase tracking-widest text-xs text-yellow-500 mb-3">Sneaker Company</p>
 
-                <h1 class="font-bold text-3xl lg:text-5xl mb-3">Fall Limited Edition Sneakers</h1>
+                    <h1 class="font-bold text-3xl lg:text-5xl mb-3">Fall Limited Edition Sneakers</h1>
 
-                <p class="text-gray-500 mb-5">These low-profile sneakers are your perfect casual wear companion. Featuring a 
-                durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
+                    <p class="text-gray-500 mb-5">These low-profile sneakers are your perfect casual wear companion. Featuring a 
+                    durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
 
-                <div class="mb-5 flex items-center lg:flex-col lg:items-start">
-                    <p class="flex items-center mb-2 mr-auto">
-                        <span class="font-bold text-3xl mr-4">$125.00</span>
-                        <span class="inline-block font-bold rounded-md bg-paleOrange text-orange px-2 py-0.5 mr-3">50%</span>
-                    </p>
+                    <div class="mb-5 flex items-center lg:flex-col lg:items-start">
+                        <p class="flex items-center mb-2 mr-auto">
+                            <span class="font-bold text-3xl mr-4">$125.00</span>
+                            <span class="inline-block font-bold rounded-md bg-paleOrange text-orange px-2 py-0.5 mr-3">50%</span>
+                        </p>
 
-                    <p class="mb-2">
-                        <span class="font-bold text-gray-300 line-through">$250.00</span>
-                    </p>
-                </div>
-
-                <form action="" class="lg:flex">
-                    <div class="relative mb-4 lg:mb-0 lg:mr-4 lg:w-72" x-data="{ quantity: 1 }">
-                        <label for="quantity" class="sr-only">Quantity</label>
-                        <input type="number" min="1" value="1" :value="quantity" id="quantity" class="block rounded-lg text-center appearance-none w-full p-4 bg-gray-100 font-bold text-black shadow-sm">
-
-                        <button class="flex items-center justify-center absolute top-1/2 -mt-5 left-0.5 w-10 h-10 bg-gray-100 text-orange hover:text-opacity-70" @click.prevent="quantity--" :disabled="quantity <= 1">
-                            <svg width="12" height="4" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M11.357 3.332A.641.641 0 0 0 12 2.69V.643A.641.641 0 0 0 11.357 0H.643A.641.641 0 0 0 0 .643v2.046c0 .357.287.643.643.643h10.714Z" id="a"/></defs><use fill-rule="nonzero" xlink:href="#a"/></svg><span class="sr-only">Decrease Quantiy</span>
-                        </button>
-
-                        <button class="flex items-center justify-center absolute top-1/2 -mt-5 right-0.5 w-10 h-10 bg-gray-100 text-orange hover:text-opacity-70" @click.prevent="quantity++">
-                            <svg width="12" height="12" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M12 7.023V4.977a.641.641 0 0 0-.643-.643h-3.69V.643A.641.641 0 0 0 7.022 0H4.977a.641.641 0 0 0-.643.643v3.69H.643A.641.641 0 0 0 0 4.978v2.046c0 .356.287.643.643.643h3.69v3.691c0 .356.288.643.644.643h2.046a.641.641 0 0 0 .643-.643v-3.69h3.691A.641.641 0 0 0 12 7.022Z" id="b"/></defs><use fill-rule="nonzero" xlink:href="#b"/></svg><span class="sr-only">Increase Quantiy</span>
-                        </button>
+                        <p class="mb-2">
+                            <span class="font-bold text-gray-300 line-through">$250.00</span>
+                        </p>
                     </div>
 
-                    <button type="button" class="flex justify-center p-4 bg-orange hover:opacity-80 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md rounded-lg">
-                        <svg width="22" height="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"/>
-                        </svg>
-                        <span class="ml-3">Add to cart</span>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </main>
+                    <form action="" @submit.prevent="addProduct" class="lg:flex">
+                        <div class="relative mb-4 lg:mb-0 lg:mr-4 lg:w-72" x-data="{ quantity: 1 }">
+                            <label for="quantity" class="sr-only">Quantity</label>
 
-    <footer>
-        <div class="attribution py-10">
-            Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" rel="noopener" rel="noreferrer">Frontend Mentor</a>. 
-            Coded by <a href="#">Byron Walker-Mills</a>.
-        </div>
-    </footer>
+                            <input type="number" min="1" value="1" x-model="input" id="quantity" class="block rounded-lg text-center appearance-none w-full p-4 bg-gray-100 font-bold text-black shadow-sm">
+
+                            <button class="flex items-center justify-center absolute top-1/2 -mt-5 left-0.5 w-10 h-10 bg-gray-100 text-orange hover:text-opacity-70" @click.prevent="subtractQty">
+                                <svg width="12" height="4" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M11.357 3.332A.641.641 0 0 0 12 2.69V.643A.641.641 0 0 0 11.357 0H.643A.641.641 0 0 0 0 .643v2.046c0 .357.287.643.643.643h10.714Z" id="a"/></defs><use fill-rule="nonzero" xlink:href="#a"/></svg><span class="sr-only">Decrease Quantiy</span>
+                            </button>
+
+                            <button class="flex items-center justify-center absolute top-1/2 -mt-5 right-0.5 w-10 h-10 bg-gray-100 text-orange hover:text-opacity-70" @click.prevent="addQty">
+                                <svg width="12" height="12" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M12 7.023V4.977a.641.641 0 0 0-.643-.643h-3.69V.643A.641.641 0 0 0 7.022 0H4.977a.641.641 0 0 0-.643.643v3.69H.643A.641.641 0 0 0 0 4.978v2.046c0 .356.287.643.643.643h3.69v3.691c0 .356.288.643.644.643h2.046a.641.641 0 0 0 .643-.643v-3.69h3.691A.641.641 0 0 0 12 7.022Z" id="b"/></defs><use fill-rule="nonzero" xlink:href="#b"/></svg><span class="sr-only">Increase Quantiy</span>
+                            </button>
+                        </div>
+
+                        <button type="submit" class="button-shadow flex justify-center p-4 bg-orange hover:opacity-80 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md rounded-lg">
+                            <svg width="22" height="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"/>
+                            </svg>
+                            <span class="ml-3">Add to cart</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="attribution py-10">
+                Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" rel="noopener" rel="noreferrer">Frontend Mentor</a>. 
+                Coded by <a href="#">Byron Walker-Mills</a>.
+            </div>
+        </footer>
+
+        <script>
+            function productCart() {
+                return {
+                    input: 1,
+                    products: [],
+
+                    addProduct() {
+                        this.products.push({
+                            product: this.input,
+                        });
+
+                        this.input = 1;
+                    },
+
+                    addQty() {
+                        this.input = this.input + 1;
+                    },
+
+                    subtractQty() {
+                        if (this.input <= 1) return;
+                        this.input = this.input - 1;
+                    },
+                    
+                    deleteProduct(index) {
+                        this.products = this.products.filter((product, productIndex) => {
+                            return index !== productIndex
+                        })
+                    },
+                };
+            }
+        </script>
+    </div>
 </body>
 </html>
