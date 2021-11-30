@@ -5,3 +5,17 @@
 .button-shadow {
     box-shadow: 0 20px 60px -15px theme('colors.orange');
 }
+
+.attribution {
+    font-size: 11px;
+    text-align: center;
+}
+
+.attribution a {
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+        color: theme('colors.orange');
+    }
+}
